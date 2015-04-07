@@ -7,9 +7,11 @@
 3) Выполнить команды в терминале:
 
   - git clone https://gitlab.com/ilyshnikova/parallel-data-gathering.git
-  - perl simple_daemon.pl для запуска одного из серверов, к которому обращается программа (для оценки времени работы)
+  - perl simple_daemon.pl 8000 & perl simple_daemon.pl 8001 &  для запуска одного из серверов, к которому обращается программа (для оценки времени работы)
   - make clean && make
   - ./main
+
+  - для остановления работы обоих локальных серверов нужно выполнить ps aux | grep simple_daemon | awk '{print $2;}' | xargs kill -9
 
 Программа будет
 
