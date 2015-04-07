@@ -45,7 +45,7 @@ RemoteOperation::RemoteOperation(
 
 	status = connect(socketfd, host_info_list->ai_addr, host_info_list->ai_addrlen);
 	if (status == -1) {
-		throw NetworkException(std::string("connect error"));
+		throw NetworkException(std::string("connect error with" + ip + ":" + port));
 	}
 
 

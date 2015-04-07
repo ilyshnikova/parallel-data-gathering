@@ -14,14 +14,11 @@ int main() {
 	SharedMemory shared_memory;
 	RemoteOperationExecuter remote_operation_executer;
 
-	Parser banki_parser = Parser(
-		"awk 1 ORS=' ' | LANG=C sed 's/.*currency-informer__yesterday-column\">//g' | LANG=C sed 's/<.*//g' | sed 's/,/./g'"
-	);
 	Parser local_parser = Parser("awk 1 ORS=' ' | LANG=C sed 's/.*Currency is now//g'");
 
 	logger << "Started";
 
-	remote_operation_executer.AddOperation(std::string("www.banki.ru"), std::string("80"), banki_parser, &shared_memory);
+	remote_operation_executer.AddOperation(std::string("127.0.0.1"), std::string("8001"), local_parser, &shared_memory);
 	remote_operation_executer.AddOperation(std::string("127.0.0.1"), std::string("8000"), local_parser, &shared_memory);
 	remote_operation_executer.ExecuteAll();
 

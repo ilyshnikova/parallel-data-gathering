@@ -4,8 +4,10 @@ use strict;
 use warnings;
 use IO::Socket::INET;
 
+my $port = shift;
+
 my $socket = new IO::Socket::INET (
-    LocalPort => 8000,
+    LocalPort => $port,
     Proto => 'tcp',
     Listen => 1,
     Reuse => 1
@@ -18,7 +20,7 @@ while (my $clientsocket = $socket->accept()){
 	print   ", Port : ", $clientsocket->peerport(), "\n";
 
 	print "Time of client message: " . time() . "\n";
-	sleep(0);
+	sleep(2);
 	print "Time of response: " . time() . "\n";
 
 	print $clientsocket "Currency is now 12342.23487\n\r\n";
