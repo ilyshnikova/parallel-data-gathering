@@ -37,4 +37,10 @@ client: client2.cpp
 clean:
 	rm -rf *.o main
 
+go_lwp_simple:
+	go build lwp_simple.go
 
+go_daemon:
+	go build daemon.go
+
+go: go_lwp_simple go_daemon
